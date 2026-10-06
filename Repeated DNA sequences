@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+vector<string> findRepeated(string s) {
+    unordered_map<string, int> count;
+    vector<string> ans;
+
+    // Take every 10-letter substring
+    for (int i = 0; i <= s.length() - 10; i++) {
+        string temp = s.substr(i, 10);
+
+        count[temp]++;
+
+        // Add when it occurs for the second time
+        if (count[temp] == 2)
+            ans.push_back(temp);
+    }
+
+    return ans;
+}
+
+int main() {
+    string s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
+
+    vector<string> ans = findRepeated(s);
+
+    cout << "Repeated sequences:" << endl;
+
+    for (string x : ans)
+        cout << x << endl;
+
+    return 0;
+}
